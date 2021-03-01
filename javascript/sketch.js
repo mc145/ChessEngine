@@ -25,12 +25,14 @@ function setup(){
     
     boardSquares(); 
     boardLines();
-    loadPieces(); 
+
+    
 }
 
-
+ 
 function draw(){ 
-   
+    updateBoard(0,0,0,0);  
+
 }
 
 

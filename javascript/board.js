@@ -27,35 +27,5 @@ function boardSquares(){
     }
 }
 
-function loadPieces(){
-    //drawing pawns
-    for(let i = 5; i<=800; i+=100){
-        image(wpawn, i, 605, 85, 85); 
-        image(bpawn, i, 105, 85,85);
-    }
-    //drawing rooks
-    image(wrook,-10,690,120,120);
-    image(wrook, 690,690,120,120); 
-    image(brook, 5,5,85,85);
-    image(brook,705,5,85,85);
 
-    //drawing knights
-
-    image(wknight,105,705,85,85);
-    image(wknight,605,705,85,85);
-    image(bknight,105,5,85,85);
-    image(bknight,605,5,85,85);
-    //drawing bishops
-    image(wbishop,205,705,85,85);
-    image(wbishop,505,705,85,85);
-    image(bbishop,205,5,85,85);
-    image(bbishop,505,5,85,85);
-    //drawing queens
-    image(wqueen, 305,705,85,85);
-    image(bqueen,305,5,85,85);
-    //drawing kings
-    image(wking,405,705,85,85);
-    image(bking,405,5,95,95);
-
-
-}
+// r = 1, k = 2, b = 3, q = 4, k = 5, p = 6
