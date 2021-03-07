@@ -19,22 +19,36 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
 
     if((xStart != xEnd) || (yStart != yEnd)){
    let piece = currentBoard[xStart][yStart];
-    //console.log(piece);
+    console.log("PIECE", piece);
+
+    let possibleMoves = legalMoves(piece,xStart,yStart); 
+    if(piece == 3){
+        console.log(possibleMoves); 
+    }
+    let moveLegal = false; 
+
+    for(let i = 0; i<possibleMoves.length; i++){
+        if((possibleMoves[i][0] == xEnd) && (possibleMoves[i][1] == yEnd)){
+            moveLegal = true; 
+        }
+    }
+
+    if(!moveLegal){
+        return 0; 
+    }
+
+
 
     currentBoard[xStart][yStart] = 0; 
+    
+
     if(currentBoard[xEnd][yEnd] != 0){
         fillSquare(xEnd, yEnd); 
     }
     currentBoard[xEnd][yEnd] = piece; 
 
-    for(let x = 0; x<8; x++){
-        for(let y = 0; y<8; y++){
-                if(currentBoard[x][y] != 0){
-                    
-                image(whichPiece(currentBoard[x][y]), 100*x + 5, 100 * (7-y) + 5, 85,85);
-                }
-        }
-    }
+
+    RedrawBoard(); 
     fillSquare(xStart, yStart); 
     
 } 
@@ -59,6 +73,17 @@ function fillSquare(x, y){
     }
 }
 
+
+function RedrawBoard(){
+    for(let x = 0; x<8; x++){
+        for(let y = 0; y<8; y++){
+                if(currentBoard[x][y] != 0){
+                    
+                image(whichPiece(currentBoard[x][y]), 100*x + 5, 100 * (7-y) + 5, 85,85);
+                }
+        }
+    }
+}
 function whichPiece(piece){
     if(piece == 1){
         return wrook; 
