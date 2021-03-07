@@ -1,4 +1,6 @@
 let wpawn,bpawn,wknight,bknight,wbishop,bbishop,wqueen,bqueen,wking,bking,wrook,brook; 
+let totalClicks = 0; 
+let pieceFrom; 
 function preload(){
     wpawn = loadImage('Assets/whitepawn.png'); 
     bpawn = loadImage('Assets/blackpawn.png'); 
@@ -25,14 +27,29 @@ function setup(){
     
     boardSquares(); 
     boardLines();
+    updateBoard(0,0,0,0); 
 
+    
     
 }
 
  
 function draw(){ 
-    updateBoard(0,0,0,0);  
+    if(clickedMouse){
+        console.log(boxClicked); 
+        totalClicks++; 
+        clickedMouse = false; 
 
+        if(totalClicks % 2 == 0){
+            //updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
+            updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
+        }
+        else if(totalClicks%2 == 1){
+            pieceFrom = boxClicked; 
+        }
+    }
+
+    boardLines(); 
 }
 
 
