@@ -59,9 +59,7 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
 function fillSquare(x, y){
     boardWidth = 100;
     noStroke(); 
-    console.log("X Y", x, y); 
     if((x + y) % 2 == 1){
-        console.log("HERE");
         fill(255); 
         rect(100*x, 100*(7 -y), boardWidth, boardWidth); 
 
