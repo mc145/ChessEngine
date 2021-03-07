@@ -27,8 +27,7 @@ function setup(){
     
     boardSquares(); 
     boardLines();
-    updateBoard(0,0,0,0); 
-
+    setupPieces(); 
     
     
 }
@@ -42,7 +41,12 @@ function draw(){
 
         if(totalClicks % 2 == 0){
             //updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
+            if((pieceFrom[0] == boxClicked[0]) && (pieceFrom[1] == boxClicked[1])){
+                totalClicks-=2; 
+            }
+            else{
             updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
+            }
         }
         else if(totalClicks%2 == 1){
             pieceFrom = boxClicked; 

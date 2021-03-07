@@ -17,12 +17,15 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
    // yStart = [xStart, xStart = yStart][0];
    // yEnd = [xEnd, xEnd = yEnd][0];
 
-
-    let piece = currentBoard[xStart][yStart]; 
-    currentBoard[xStart][yStart] = 0; 
-    currentBoard[xEnd][yEnd] = piece; 
-    
+    if((xStart != xEnd) || (yStart != yEnd)){
+   let piece = currentBoard[xStart][yStart];
     //console.log(piece);
+
+    currentBoard[xStart][yStart] = 0; 
+    if(currentBoard[xEnd][yEnd] != 0){
+        fillSquare(xEnd, yEnd); 
+    }
+    currentBoard[xEnd][yEnd] = piece; 
 
     for(let x = 0; x<8; x++){
         for(let y = 0; y<8; y++){
@@ -32,10 +35,9 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
                 }
         }
     }
-    if((xStart != xEnd) || (yStart != yEnd)){
-        console.log("HERE"); 
     fillSquare(xStart, yStart); 
-    }
+    
+} 
     
 
 }
