@@ -65,7 +65,7 @@ function fillSquare(x, y){
 
     }
     else{
-        fill(47,79,40); 
+        fill(177,177,177); 
         rect(100*x, 100*(7 -y), boardWidth, boardWidth); 
 
     }

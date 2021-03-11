@@ -28,6 +28,12 @@ function legalMoves(piece, x, y){
     else if(piece == 4){
         WhiteQueenMoves(x,y); 
     }
+    else if(piece == -4){
+        BlackQueenMoves(x,y); 
+    }
+    else if(piece == 5){
+        WhiteKingMoves(x,y); 
+    }
 
     return moves; 
 }
@@ -156,39 +162,69 @@ function BlackKnightMoves(x,y){
 function WhiteBishopMoves(x,y){
     let curX = x
     let curY = y 
+    let hit = false; 
 
     while((curX + 1<=7) && (curY +1 <=7)&& (currentBoard[curX+1][curY+1] <= 0)){
         curX++; 
         curY++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+
        
     }
 
     curX = x
     curY = y
 
+    hit = false; 
+
     while((curX - 1 >= 0) && (curY + 1 <=7) && (currentBoard[curX-1][curY+1] <= 0)){
         curX--; 
         curY++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
+    hit = false; 
     curX = x; 
     curY = y; 
     while((curX - 1 >= 0) && (curY -1 >= 0) && (currentBoard[curX-1][curY-1] <= 0)){
         curX--; 
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
+    hit = false; 
     curX = x;
     curY = y; 
     while( (curX + 1 <= 7) && (curY -1 >= 0) && (currentBoard[curX+1][curY-1] <= 0)){
         curX++; 
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
         
     }
 } 
@@ -198,38 +234,82 @@ function BlackBishopMoves(x,y){
     let curX = x
     let curY = y 
 
+    let hit = false; 
+
     while((curX + 1<=7) && (curY +1 <=7)&& (currentBoard[curX+1][curY+1] >= 0)){
         curX++; 
         curY++; 
         moves.push([curX, curY]); 
+
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+
+       
        
     }
 
     curX = x
     curY = y
 
+    hit = false; 
+
     while((curX - 1 >= 0) && (curY + 1 <=7) && (currentBoard[curX-1][curY+1] >= 0)){
         curX--; 
         curY++; 
         moves.push([curX, curY]); 
+
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+
+       
        
     }
 
     curX = x; 
     curY = y; 
+
+    hit = false; 
+
     while((curX - 1 >= 0) && (curY -1 >= 0) && (currentBoard[curX-1][curY-1] >= 0)){
         curX--; 
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+
+       
        
     }
 
     curX = x;
     curY = y; 
+
+    hit = false; 
+
     while( (curX + 1 <= 7) && (curY -1 >= 0) && (currentBoard[curX+1][curY-1] >= 0)){
         curX++; 
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+
+       
         
     }
 }
@@ -239,77 +319,417 @@ function WhiteRookMoves(x,y){
     let curX = x
     let curY = y 
 
+    let hit = false; 
+
     while((curX + 1<=7) &&(currentBoard[curX+1][curY] <= 0)){
         curX++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
     curX = x
     curY = y
+    hit = false; 
 
     while((curX - 1 >= 0) && (currentBoard[curX-1][curY] <= 0)){
         curX--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
     curX = x; 
     curY = y; 
+    hit = false; 
+
+
     while((curY -1 >= 0) && (currentBoard[curX][curY-1] <= 0)){
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
     curX = x;
     curY = y; 
+    hit = false; 
+
     while( (curY + 1 <=7) && (currentBoard[curX][curY+1] <= 0)){
         curY++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] < 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
         
     }
 }
 
 function BlackRookMoves(x,y){
-    let curX = x
-    let curY = y 
+    let curX = x;
+    let curY = y;
+
+    let hit = false; 
 
     while((curX + 1<=7) &&(currentBoard[curX+1][curY] >= 0)){
         curX++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
-    curX = x
-    curY = y
+    curX = x;
+    curY = y;
+    hit = false; 
 
     while((curX - 1 >= 0) && (currentBoard[curX-1][curY] >= 0)){
         curX--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
     curX = x; 
     curY = y; 
+    hit = false; 
+
     while((curY -1 >= 0) && (currentBoard[curX][curY-1] >= 0)){
         curY--; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
        
     }
 
     curX = x;
     curY = y; 
+    hit = false; 
     while( (curY + 1 <=7) && (currentBoard[curX][curY+1] >= 0)){
         curY++; 
         moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
         
     }
 }
 
 
 function WhiteQueenMoves(x,y){
+        let curX = x
+        let curY = y 
+    
+        let hit = false; 
+    
+        while((curX + 1<=7) &&(currentBoard[curX+1][curY] <= 0)){
+            curX++; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        hit = false; 
+        curX = x
+        curY = y
+    
+        while((curX - 1 >= 0) && (currentBoard[curX-1][curY] <= 0)){
+            curX--; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        curX = x; 
+        curY = y; 
+        hit = false; 
+
+        while((curY -1 >= 0) && (currentBoard[curX][curY-1] <= 0)){
+            curY--; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        curX = x;
+        curY = y; 
+        hit = false; 
+
+        while( (curY + 1 <=7) && (currentBoard[curX][curY+1] <= 0)){
+            curY++; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+            
+        }
+
+        curX = x; 
+        curY = y; 
+        hit = false; 
+
+        while((curX + 1<=7) && (curY +1 <=7)&& (currentBoard[curX+1][curY+1] <= 0)){
+            curX++; 
+            curY++; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        curX = x
+        curY = y
+        hit = false; 
+    
+        while((curX - 1 >= 0) && (curY + 1 <=7) && (currentBoard[curX-1][curY+1] <= 0)){
+            curX--; 
+            curY++; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        curX = x; 
+        curY = y; 
+        hit = false; 
+
+        while((curX - 1 >= 0) && (curY -1 >= 0) && (currentBoard[curX-1][curY-1] <= 0)){
+            curX--; 
+            curY--; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+           
+        }
+    
+        curX = x;
+        curY = y; 
+        hit = false; 
+
+        while( (curX + 1 <= 7) && (curY -1 >= 0) && (currentBoard[curX+1][curY-1] <= 0)){
+            curX++; 
+            curY--; 
+            moves.push([curX, curY]); 
+            if(currentBoard[curX][curY] < 0){
+                hit = true; 
+            }
+            if(hit){
+                break; 
+            }
+        }
     
 }
 
+
+function BlackQueenMoves(x,y){
+    let curX = x
+    let curY = y 
+
+    let hit = false; 
+
+    while((curX + 1<=7) &&(currentBoard[curX+1][curY] <= 0)){
+        curX++; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    hit = false; 
+    curX = x
+    curY = y
+
+    while((curX - 1 >= 0) && (currentBoard[curX-1][curY] <= 0)){
+        curX--; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    curX = x; 
+    curY = y; 
+    hit = false; 
+
+    while((curY -1 >= 0) && (currentBoard[curX][curY-1] <= 0)){
+        curY--; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    curX = x;
+    curY = y; 
+    hit = false; 
+
+    while( (curY + 1 <=7) && (currentBoard[curX][curY+1] <= 0)){
+        curY++; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+        
+    }
+
+    curX = x; 
+    curY = y; 
+    hit = false; 
+
+    while((curX + 1<=7) && (curY +1 <=7)&& (currentBoard[curX+1][curY+1] <= 0)){
+        curX++; 
+        curY++; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    curX = x
+    curY = y
+    hit = false; 
+
+    while((curX - 1 >= 0) && (curY + 1 <=7) && (currentBoard[curX-1][curY+1] <= 0)){
+        curX--; 
+        curY++; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    curX = x; 
+    curY = y; 
+    hit = false; 
+
+    while((curX - 1 >= 0) && (curY -1 >= 0) && (currentBoard[curX-1][curY-1] <= 0)){
+        curX--; 
+        curY--; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+       
+    }
+
+    curX = x;
+    curY = y; 
+    hit = false; 
+
+    while( (curX + 1 <= 7) && (curY -1 >= 0) && (currentBoard[curX+1][curY-1] <= 0)){
+        curX++; 
+        curY--; 
+        moves.push([curX, curY]); 
+        if(currentBoard[curX][curY] > 0){
+            hit = true; 
+        }
+        if(hit){
+            break; 
+        }
+    }
+
+}
+
+function WhiteKingMoves(x,y){
+    if(currentBoard[x-1][y] <= 0){
+        moves.push([x-1,y]); 
+    }
+    else if(currentBoard[x-1][y+1] <= 0){
+        moves.push([x-1,y+1]); 
+    }
+    else if(currentBoard[x][y+1] <= 0){
+        moves.push([x,y+1]); 
+    }
+}
 
