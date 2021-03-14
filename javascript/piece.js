@@ -19,7 +19,20 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
 
     if((xStart != xEnd) || (yStart != yEnd)){
    let piece = currentBoard[xStart][yStart];
-    console.log("PIECE", piece);
+
+
+   if(whitesMove && piece < 0){
+       console.log("NOT YOUR TURN"); 
+       return 0; 
+   }
+   if(!whitesMove && piece > 0){
+       console.log("NOT YOUR TURN");
+       return 0;  
+   }
+
+ 
+
+    console.log("PIECE", piece, whitesMove);
   
 
     if((xStart == 4) && (yStart == 0) && (xEnd == 6) && (yEnd == 0)){
@@ -31,6 +44,7 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
             RedrawBoard(); 
             fillSquare(4,0); 
             fillSquare(7,0); 
+            whitesMove = false; 
             return 0;
         }
     }
@@ -43,6 +57,34 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
             RedrawBoard(); 
             fillSquare(0,0); 
             fillSquare(4,0); 
+            whitesMove = false; 
+            return 0; 
+        }
+    }
+
+    if((xStart == 4) && (yStart == 7) && (xEnd == 6) && (yEnd == 7)){
+        if(blackCastleKing){
+            currentBoard[6][7] = -5; 
+            currentBoard[5][7] = -1; 
+            currentBoard[7][7] = 0; 
+            currentBoard[4][7] = 0; 
+            RedrawBoard(); 
+            fillSquare(4,7); 
+            fillSquare(7,7); 
+            whitesMove = true; 
+            return 0; 
+        }
+    }
+    if((xStart == 4) && (yStart == 7) && (xEnd == 2) && (yEnd == 7)){
+        if(blackCastleQueen){
+            currentBoard[3][7] = -1; 
+            currentBoard[2][7] = -5; 
+            currentBoard[4][7] = 0; 
+            currentBoard[0][7] = -0; 
+            RedrawBoard(); 
+            fillSquare(0,7); 
+            fillSquare(4,7); 
+            whitesMove = true; 
             return 0; 
         }
     }
@@ -64,6 +106,12 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
     }
 
 
+    if(whitesMove){
+        whitesMove = false; 
+    }
+    else if(!whitesMove){
+        whitesMove = true; 
+    }
 
     currentBoard[xStart][yStart] = 0; 
     
@@ -96,6 +144,29 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
     if(kingMoved || kingRookMoved){
         castleKing = false; 
     }
+
+    if(currentBoard[4][7] != -5){
+        blackKingMoved = true; 
+    }
+    if(currentBoard[0][7] != -1){
+        blackQueenRookMoved = true; 
+    }
+    if(currentBoard[7][7] != -1){
+        blackKingRookMoved = true; 
+    }
+    if(!blackKingMoved && !blackQueenRookMoved && (currentBoard[3][7] == 0) && (currentBoard[2][7] == 0) && (currentBoard[1][7] == 0)){
+        blackCastleQueen = true; 
+    }
+    if(!blackKingMoved && !blackKingRookMoved && (currentBoard[5][7] == 0) && (currentBoard[6][7] == 0)){
+        blackCastleKing = true; 
+    }
+    if(blackKingMoved || blackQueenRookMoved){
+        castleQueen = false; 
+    }
+    if(blackKingMoved || blackKingRookMoved){
+        blackCastleKing = false; 
+    }
+
     RedrawBoard(); 
     fillSquare(xStart, yStart); 
     

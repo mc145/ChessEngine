@@ -6,6 +6,14 @@ let kingRookMoved = false;
 let queenRookMoved = false; 
 let castleKing = false; 
 let castleQueen = false; 
+let whitesMove = true; 
+
+let blackKingMoved = false; 
+let blackKingRookMoved = false; 
+let blackQueenRookMoved = false; 
+let blackCastleKing = false; 
+let blackCastleQueen = false; 
+
 
 
 function preload(){
