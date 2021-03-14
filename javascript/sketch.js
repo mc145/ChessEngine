@@ -1,6 +1,11 @@
 let wpawn,bpawn,wknight,bknight,wbishop,bbishop,wqueen,bqueen,wking,bking,wrook,brook; 
 let totalClicks = 0; 
 let pieceFrom; 
+let kingMoved = false; 
+let kingRookMoved = false; 
+let queenRookMoved = false; 
+let castleKing = false; 
+let castleQueen = false; 
 
 
 function preload(){
@@ -22,8 +27,10 @@ function preload(){
 function setup(){
     createCanvas(800,800); 
 
-    background(255);
-    stroke(105);
+   //background(255);
+  // background(187,137,100); 
+  fill(241,222,182); 
+  stroke(105);
     rect(0,0,800,800);
     
     
@@ -42,7 +49,7 @@ function draw(){
         clickedMouse = false; 
 
         if(totalClicks % 2 == 0){
-            updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
+            //updateBoard(pieceFrom[0], pieceFrom[1], boxClicked[0], boxClicked[1]); 
             if((pieceFrom[0] == boxClicked[0]) && (pieceFrom[1] == boxClicked[1])){
                 totalClicks-=2; 
             }

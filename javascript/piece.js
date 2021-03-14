@@ -20,11 +20,35 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
     if((xStart != xEnd) || (yStart != yEnd)){
    let piece = currentBoard[xStart][yStart];
     console.log("PIECE", piece);
+  
+
+    if((xStart == 4) && (yStart == 0) && (xEnd == 6) && (yEnd == 0)){
+        if(castleKing){
+            currentBoard[6][0] = 5; 
+            currentBoard[5][0] = 1; 
+            currentBoard[7][0] = 0; 
+            currentBoard[4][0] = 0; 
+            RedrawBoard(); 
+            fillSquare(4,0); 
+            fillSquare(7,0); 
+            return 0;
+        }
+    }
+    if((xStart == 4) && (yStart == 0) && (xEnd == 2) && (yEnd == 0)){
+        if(castleQueen){
+            currentBoard[3][0] = 1; 
+            currentBoard[2][0] = 5; 
+            currentBoard[4][0] = 0; 
+            currentBoard[0][0] = 0; 
+            RedrawBoard(); 
+            fillSquare(0,0); 
+            fillSquare(4,0); 
+            return 0; 
+        }
+    }
 
     let possibleMoves = legalMoves(piece,xStart,yStart); 
-    if(piece == 3){
-        console.log(possibleMoves); 
-    }
+ 
     let moveLegal = false; 
 
     for(let i = 0; i<possibleMoves.length; i++){
@@ -32,6 +56,8 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
             moveLegal = true; 
         }
     }
+
+
 
     if(!moveLegal){
         return 0; 
@@ -47,7 +73,29 @@ function updateBoard(xStart, yStart, xEnd, yEnd){
     }
     currentBoard[xEnd][yEnd] = piece; 
 
+    if((currentBoard[4][0] != 5)){
+        kingMoved = true; 
+    }
+    if(currentBoard[0][0] != 1){
+        queenRookMoved = true; 
+    }
+    if(currentBoard[7][0] != 1){
+        kingRookMoved = true; 
+    }
 
+    if(!kingMoved && !queenRookMoved && (currentBoard[3][0] == 0) && (currentBoard[2][0] == 0) && (currentBoard[1][0] == 0)){
+        castleQueen = true; 
+    }
+    if(!kingMoved && !kingRookMoved && (currentBoard[5][0] == 0) && (currentBoard[6][0] == 0)){
+        castleKing = true; 
+    }
+
+    if(kingMoved || queenRookMoved){
+        castleQueen = false; 
+    }
+    if(kingMoved || kingRookMoved){
+        castleKing = false; 
+    }
     RedrawBoard(); 
     fillSquare(xStart, yStart); 
     
@@ -60,12 +108,15 @@ function fillSquare(x, y){
     boardWidth = 100;
     noStroke(); 
     if((x + y) % 2 == 1){
-        fill(255); 
+        fill(241,222,182); 
         rect(100*x, 100*(7 -y), boardWidth, boardWidth); 
 
     }
     else{
-        fill(177,177,177); 
+        //fill(177,177,177); 
+        
+        fill(187,137,100); 
+
         rect(100*x, 100*(7 -y), boardWidth, boardWidth); 
 
     }

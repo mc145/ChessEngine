@@ -16,10 +16,11 @@ function boardSquares(){
     noStroke();
     for(let i = 0; i <= 800; i+=200){
         for(let j = 100; j<=800; j+=200){
-        fill(171,171,171); 
+        fill(187,137,100); 
         rect(i,j,100,100);
         } 
     }
+
     for(let i = 100; i<=800; i+=200){
         for(let j = 0; j<=800; j+=200){
             rect(i,j,100,100);  

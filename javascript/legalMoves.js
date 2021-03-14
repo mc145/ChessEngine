@@ -722,26 +722,33 @@ function BlackQueenMoves(x,y){
 }
 
 function WhiteKingMoves(x,y){
-    if(currentBoard[x-1][y] <= 0){
+    if((x > 0) && (currentBoard[x-1][y] <= 0)){
         moves.push([x-1,y]); 
     }
-    else if(currentBoard[x-1][y+1] <= 0){
+    if((x > 0) && (y < 7) && (currentBoard[x-1][y+1] <= 0)){
         moves.push([x-1,y+1]); 
     }
-    else if(currentBoard[x][y+1] <= 0){
+    if((y < 7) && (currentBoard[x][y+1] <= 0)){
         moves.push([x,y+1]); 
     }
-    else if(currentBoard[x+1][y+1] <= 0){
+    if((x < 7) && (y < 7) && (currentBoard[x+1][y+1] <= 0)){
         moves.push([x+1, y+1]); 
     }
-    else if(currentBoard[x+1][y] <= 0){
+    if((x < 7) && (currentBoard[x+1][y] <= 0)){
         moves.push([x+1, y]); 
     }
-    else if(currentBoard[x+1][y-1] <= 0){
+    if((x < 7) && (y > 0) && (currentBoard[x+1][y-1] <= 0)){
         moves.push([x+1, y-1]); 
     }
-    else if(currentBoard[x][y-1] <= 0){
+    if((y > 0) && (currentBoard[x][y-1] <= 0)){
         moves.push([x, y-1]); 
     }
+    if((x > 0) && (y > 0) && (currentBoard[x-1][y-1] <= 0)){
+        moves.push([x-1, y-1]); 
+    }
+
+
+  
 }
+
 
